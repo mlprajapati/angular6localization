@@ -1,0 +1,55 @@
+@import "mixins";
+header,mat-toolbar {
+  color: $secondary--color;
+  background: $primary--color;
+  position: sticky;
+}
+mat-toolbar{
+  padding: 2px;
+  font: inherit;
+}
+:host(app-nav) {
+  padding-top: 0;
+  padding-bottom: 6.5rem;
+  display: grid;
+
+  header {
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+    color: $secondary--color !important;
+    background: $primary--color !important;
+
+  }
+}
+
+@media (max-width: 807px) {
+  #today {
+    width: 50%;
+  }
+}
+
+@media (max-width: 680px) {
+  :host(app-nav) {
+    padding-top: 0;
+    padding-bottom: 1rem;
+
+    header {
+      position: relative;
+      color: $secondary--color;
+      background: $primary--color;
+     
+    }
+  }
+}
+
+@media (max-width: 425px) {
+  :host(app-nav) {
+    padding-bottom: 0;
+
+    header {
+      color: $secondary--color;
+      background: $primary--color;
+    }
+  }
+}

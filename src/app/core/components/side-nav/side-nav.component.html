@@ -1,0 +1,13 @@
+<mat-sidenav-container #sidenav>
+    <mat-sidenav mode="{{mode}}" #sidenav style="min-width:220px;" opened="{{sidenavState}}">
+        <button mat-menu-item *ngFor="let item of menuItems" (click)="goToPage(item.link)">
+            <i class="material-icons material-icons-white">{{item.icon}}</i>
+            <span>{{item.name | uppercase}}</span>
+        </button>
+    </mat-sidenav>
+    <div class="inner-sidenav-content">
+        <mat-card>
+            <router-outlet></router-outlet>
+        </mat-card>
+    </div>
+</mat-sidenav-container>

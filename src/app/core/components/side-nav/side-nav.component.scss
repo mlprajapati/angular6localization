@@ -1,0 +1,33 @@
+@import "mixins";
+mat-sidenav{
+  color: $secondary--color;
+  background: $primary--color;
+}
+:host(app-nav) {
+  padding-top: 0;
+  padding-bottom: 6.5rem;
+  display: grid;
+
+}
+
+@media (max-width: 807px) {
+  #today {
+    width: 50%;
+  }
+}
+
+@media (max-width: 680px) {
+  :host(app-nav) {
+    padding-top: 0;
+    padding-bottom: 1rem;
+
+  }
+}
+
+@media (max-width: 425px) {
+  :host(app-nav) {
+    padding-bottom: 0;
+
+
+  }
+}

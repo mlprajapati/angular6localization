@@ -1,0 +1,56 @@
+<header>
+    <mat-toolbar>
+
+        <button style="background-color:transparent;border-style:none;cursor:pointer;" (click)="setSideNavState()">
+                <i class="material-icons material-icons-white ">reorder</i>
+        </button>
+     
+        
+        <img class="log" src="./assets/img/logo.png">
+        
+        <div class="flex-spacer"></div>
+        <app-search-bar></app-search-bar>
+        <div fxflex="0 1 auto" fxlayout="row" fxlayoutalign="start center" >
+
+            <span class="mat-button-wrapper">
+                <div fxlayout="row" fxlayoutalign="center center" >
+                    <img class="avatar" src="assets/img/profile.jpg">
+                    <span class="username mr-12" fxHide fxShow.gt-sm>User name</span>
+                </div>
+            </span>
+            <div class="mat-button-ripple mat-ripple" matripple=""></div>
+            <div class="mat-button-focus-overlay"></div>
+
+        </div>
+        <div fxflex="0 1 auto" fxlayout="row" fxlayoutalign="start center" ></div>
+        <button mat-icon-button [matMenuTriggerFor]="matmenu">
+            <mat-icon>public</mat-icon>
+        </button>
+        <mat-menu #matmenu="matMenu" [overlapTrigger]="false">
+            <button mat-menu-item (click)="changeLanguage('zh')">
+                <mat-icon>flag</mat-icon>
+                <span>
+                    Chinese
+                </span>
+            </button>
+            <button mat-menu-item (click)="changeLanguage('en')">
+                <mat-icon>flag</mat-icon>
+                <span>
+                    English
+                </span>
+            </button>
+            <button mat-menu-item (click)="changeLanguage('es')">
+                <mat-icon>flag</mat-icon>
+                <span>
+                    Español
+                </span>
+            </button>
+            <button mat-menu-item (click)="changeLanguage('pt-br')">
+                <mat-icon>flag</mat-icon>
+                <span>
+                    Português
+                </span>
+            </button>
+        </mat-menu>
+    </mat-toolbar>
+</header>
