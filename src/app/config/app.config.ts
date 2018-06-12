@@ -9,6 +9,7 @@ export const AppConfig: IAppConfig = {
     users: 'users',
     login:'login',
     dashboard:'dashboard',
+    newusers:'newusers',
     error404: '404'
   },
   endpoints: {

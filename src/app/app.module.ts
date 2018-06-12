@@ -18,14 +18,22 @@ import {ProgressInterceptor} from './shared/progress.interceptor';
 import {TimingInterceptor} from './shared/timing.interceptor';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthGuard } from './guards/auth.guard';
+import { JwtInterceptor } from './helpers/jwt.interceptor';
+import { AuthenticationService} from './services/authentication.service';
+import { fakeBackendProvider } from './helpers/fake.backend';
+import { CreateUserComponent } from './pages/user-management/create-user/create-user.component';
+
 
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'users', component: UserManagementComponent },
-  { path: 'dashboard', component: DashboardComponent }
+  { path: 'users', component: UserManagementComponent,canActivate: [AuthGuard] },
+  { path: 'newusers', component: CreateUserComponent},
+  { path: 'dashboard', component: DashboardComponent,canActivate: [AuthGuard] },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
@@ -34,12 +42,14 @@ const routes: Routes = [
     DashboardComponent,
     LoginComponent,
     UserManagementComponent,
+    CreateUserComponent
   ],
   imports: [
     BrowserModule,
     ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(routes),
     TranslateModule.forRoot({
       loader: {
@@ -52,9 +62,18 @@ const routes: Routes = [
     SharedModule.forRoot(),
     CoreModule,
   ],
-  providers: [{provide: APP_CONFIG, useValue: AppConfig},
+  providers: [AuthGuard,AuthenticationService,{provide: APP_CONFIG, useValue: AppConfig},
     {provide: HTTP_INTERCEPTORS, useClass: ProgressInterceptor, multi: true, deps: [ProgressBarService]},
-    {provide: HTTP_INTERCEPTORS, useClass: TimingInterceptor, multi: true}],
+    {provide: HTTP_INTERCEPTORS, useClass: TimingInterceptor, multi: true},
+    UserService,
+    {
+        provide: HTTP_INTERCEPTORS,
+        useClass: JwtInterceptor,
+        multi: true
+    },
+
+    // provider used to create fake backend
+    fakeBackendProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

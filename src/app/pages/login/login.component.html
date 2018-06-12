@@ -1,3 +1,30 @@
-<p>
-  login works!
-</p>
+<div class="pddingtop login-container" fxLayout="row" fxLayoutAlign="center center">
+
+  <mat-card class="mat-card-custom" fxFlex="90%" fxFlex.gt-md="40%" fxFlex.gt-sm="60%">
+    <mat-card-title class="mat-card-title-custom mat-card-title-custom-bg">Login</mat-card-title>
+    <mat-card-content class="mat-card-content-custom">
+      <notification></notification>
+      <form class="login-container" [formGroup]="loginForm">
+        <mat-form-field>
+          <input matInput placeholder="Enter your email" [formControl]="email" required>
+          <span matSuffix>
+            <i class="material-icons">
+              email
+            </i>
+          </span>
+          <mat-error *ngIf="email.invalid">{{getErrorEmailMessage()}}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Enter your password" [formControl]="password" required [type]="hide ? 'password' : 'text'">
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+          <mat-error *ngIf="password.invalid">{{getErrorPasswordMessage()}}</mat-error>
+        </mat-form-field>
+        
+      </form>
+    </mat-card-content>
+    <mat-card-actions class="mat-card-actions-custom" style="text-align: right;">
+        <button mat-raised-button color="primary" (click)="login()">Login</button>
+    </mat-card-actions>
+    
+  </mat-card>
+</div>

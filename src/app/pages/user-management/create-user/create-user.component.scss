@@ -1,10 +1,10 @@
+
 @import "mixins";
-.login-container {
+.create-container {
     display: flex;
     flex-direction: column;
   }
   
-  .login-container > * {
+  .create-container > * {
     width: 100%;
   }
- 

@@ -53,6 +53,7 @@ export class SideNavComponent implements OnInit {
       console.log("--->",texts);
       this.menuItems = [
         {link: '/'+AppConfig.routes.login, name: texts['general'].menu['login'],icon:'input'},
+        {link: '/'+AppConfig.routes.newusers, name: texts['general'].menu['createuser'],icon:'person_add'},
         {link: '/' + AppConfig.routes.users, name: texts['general'].menu['users'],icon:'account_box'},
         {link: '/' + AppConfig.routes.dashboard, name: texts['general'].menu['dashboard'],icon:'dashboard'}
       ];

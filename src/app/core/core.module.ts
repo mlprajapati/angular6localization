@@ -12,6 +12,8 @@ import {Error404Component} from './components/error404/error404.component';
 import {ProgressBarService} from './services/progress-bar.service';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { HeaderComponent } from './components/header/header.component';
+import { NotificationComponent } from './directives/notification/notification.directive';
+import { NotificationService } from './directives/notification/notification.service';
 
 @NgModule({
   imports: [
@@ -25,7 +27,8 @@ import { HeaderComponent } from './components/header/header.component';
     NavComponent,
     FooterComponent,
     SideNavComponent,
-    HeaderComponent
+    HeaderComponent,
+    NotificationComponent
   ],
   declarations: [
     NavComponent,
@@ -33,11 +36,13 @@ import { HeaderComponent } from './components/header/header.component';
     SearchBarComponent,
     Error404Component,
     SideNavComponent,
-    HeaderComponent
+    HeaderComponent,
+    NotificationComponent
   ],
   providers: [
     LoggerService,
-    ProgressBarService
+    ProgressBarService,
+    NotificationService
   ]
 })
 
