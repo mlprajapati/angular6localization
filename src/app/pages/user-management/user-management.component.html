@@ -1,16 +1,33 @@
+<div class="pddingtop login-container" fxLayout="row" fxLayoutAlign="center center">
+<mat-card class="mat-card-custom" fxFlex="95%">
+  <mat-card-title class="mat-card-title-custom mat-card-title-custom-bg">User List</mat-card-title>
+  <mat-card-content class="mat-card-content-custom">
 <table class="table table-striped">
   <thead>
     <tr>
       <th>ID</th>
-      <th>Name</th>
-      <th>Movies</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email/username</th>
+      <th colspan="2" style="text-align: center;">Action</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let user of users">
       <td>{{ user.id }}</td>
-      <td>{{ user.name }}</td>
-      <td>{{ user.movies }}</td>
+      <td>{{ user.firstName }}</td>
+      <td>{{ user.lastName }}</td>
+      <td>{{ user.email }}</td>
+      <td style="text-align: center;"><i (click)="editUser(user)" style="cursor: pointer;" class="material-icons">
+          pageview
+          </i></td>
+      <td style="text-align: center;"><i (click)="deleteUser(user)" style="cursor: pointer;" class="material-icons">
+          delete_forever
+          </i>
+      </td>
     </tr>
   </tbody>
 </table>
+</mat-card-content>
+</mat-card>
+</div>

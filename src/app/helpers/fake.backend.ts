@@ -76,7 +76,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                             break;
                         }
                     }
-                    return of(new HttpResponse({ status: 200 }));
+                    return of(new HttpResponse({ status: 200 ,body: users}));
                 } else {
                     return throwError('Unauthorised');
                 }

@@ -24,6 +24,9 @@ import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { AuthenticationService} from './services/authentication.service';
 import { fakeBackendProvider } from './helpers/fake.backend';
 import { CreateUserComponent } from './pages/user-management/create-user/create-user.component';
+import { PopupComponent } from './core/components/popup/popup.component';
+import { ViewUserComponent } from './pages/user-management/view-user/view-user.component';
+
 
 
 
@@ -42,7 +45,8 @@ const routes: Routes = [
     DashboardComponent,
     LoginComponent,
     UserManagementComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    ViewUserComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +75,7 @@ const routes: Routes = [
         useClass: JwtInterceptor,
         multi: true
     },
-    fakeBackendProvider],
+    fakeBackendProvider],entryComponents: [ViewUserComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

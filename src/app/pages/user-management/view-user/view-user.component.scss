@@ -1,0 +1,10 @@
+
+@import "mixins";
+.create-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .create-container > * {
+    width: 100%;
+  }

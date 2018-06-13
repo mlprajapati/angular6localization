@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
- 
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA,MatFormFieldModule} from '@angular/material';
 import {UserService } from '../user.service';
 import { NotificationService } from '../../../core/directives/notification/notification.service';
  
-@Component({templateUrl: './create-user.component.html',
-            styleUrls: ['./create-user.component.scss']})
-export class CreateUserComponent implements OnInit {
+@Component({templateUrl: './view-user.component.html',
+            styleUrls: ['./view-user.component.scss']})
+export class ViewUserComponent implements OnInit {
     createUserForm: FormGroup;
     loading = false;
     submitted = false;
@@ -16,8 +16,14 @@ export class CreateUserComponent implements OnInit {
     constructor(
         private formBuilder: FormBuilder,
         private router: Router,
-        private userService: UserService,private notificationService:NotificationService) { }
- 
+        private userService: UserService,private notificationService:NotificationService,
+        public dialogRef: MatDialogRef<ViewUserComponent>,
+            @Inject(MAT_DIALOG_DATA) public data: any) { }
+        
+          onNoClick(): void {
+            this.dialogRef.close();
+          }
+    
     ngOnInit() {
         this.createUserForm = this.formBuilder.group({
             firstName: ['', Validators.required],
@@ -39,18 +45,11 @@ export class CreateUserComponent implements OnInit {
         }
  
         this.loading = true;
-        this.userService.create(this.createUserForm.value)
+        this.userService.update(this.createUserForm.value)
             .pipe(first())
             .subscribe(
                 data => {
-                    this.notificationService.success('User Created successful', true);
-                    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-                    
-                    if(currentUser && currentUser.token){
-                        this.router.navigate(['/users']);
-                    } else {
-                        this.router.navigate(['/login']);
-                    }
+                    this.notificationService.success('User updated successful', true);
                     
                 },
                 error => {

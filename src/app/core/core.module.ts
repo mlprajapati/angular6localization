@@ -14,6 +14,7 @@ import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NotificationComponent } from './directives/notification/notification.directive';
 import { NotificationService } from './directives/notification/notification.service';
+import { PopupComponent } from './components/popup/popup.component';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { NotificationService } from './directives/notification/notification.serv
     FooterComponent,
     SideNavComponent,
     HeaderComponent,
-    NotificationComponent
+    NotificationComponent,
+    PopupComponent
   ],
   declarations: [
     NavComponent,
@@ -37,13 +39,14 @@ import { NotificationService } from './directives/notification/notification.serv
     Error404Component,
     SideNavComponent,
     HeaderComponent,
-    NotificationComponent
+    NotificationComponent,
+    PopupComponent
   ],
   providers: [
     LoggerService,
     ProgressBarService,
     NotificationService
-  ]
+  ],entryComponents: [PopupComponent],
 })
 
 export class CoreModule {

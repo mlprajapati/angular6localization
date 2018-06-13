@@ -16,6 +16,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 export class SideNavComponent implements OnInit {
   @Input () mode;
+  @Input () isOpened;
   appConfig: any;
   menuItems: any[];
   progressBarMode: string;
@@ -36,8 +37,12 @@ export class SideNavComponent implements OnInit {
       this.progressBarMode = mode;
     });
     this.navService.getSideNavState().subscribe((item)=>{
-      this.sidenavState = !item;
+      this.sidenavState = (this.isOpened)?item:!item;
     });
+    if(this.isOpened){
+      this.sidenavState=true;
+    } 
+    
 
 
   }
