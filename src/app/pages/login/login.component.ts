@@ -30,19 +30,16 @@ export class LoginComponent implements OnInit {
       email: '',
       password: '',
     });
-    // reset login status
     this.authenticationService.logout();
- 
-    // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/user';
+    
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/users';
   }
   getErrorEmailMessage() {
-    return this.email.hasError('required') ? 'You must enter a value' :
-        this.email.hasError('email') ? 'Not a valid email' :
-            '';
+    return this.email.hasError('required') ? 'Email is required' :
+        this.email.hasError('email') ? 'Not a valid email' :'';
   }
    getErrorPasswordMessage() {
-    return this.email.hasError('required') ? 'You must enter a value' :'';
+    return this.email.hasError('required') ? 'Password is required' :'';
   }
   login(){
     if(this.email.valid && this.password.valid){
@@ -50,6 +47,7 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
           data => {
+            debugger;
               this.router.navigate([this.returnUrl]);
           },
           error => {

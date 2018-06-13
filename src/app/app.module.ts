@@ -71,8 +71,6 @@ const routes: Routes = [
         useClass: JwtInterceptor,
         multi: true
     },
-
-    // provider used to create fake backend
     fakeBackendProvider],
   bootstrap: [AppComponent]
 })
